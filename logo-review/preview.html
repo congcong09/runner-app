@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Pacelith · Logo Concepts</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 1600px; min-height: 1400px; padding: 54px 64px 42px;
+    background: #F1F5F9; color: #0B2545;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 30px; }
+  .kicker { font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #0E9F94; }
+  h1 { margin: 7px 0 6px; font-size: 38px; line-height: 1.1; letter-spacing: -.03em; }
+  .sub { margin: 0; color: #64748B; font-size: 13px; }
+  .review-badge { border: 1px solid #CBD5E1; background: #fff; padding: 9px 13px; border-radius: 999px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #64748B; }
+  .concept { display: grid; grid-template-columns: 292px 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+  .meta, .light, .dark { border-radius: 18px; min-height: 286px; }
+  .meta { padding: 26px 26px 24px; background: #fff; border: 1px solid #E2E8F0; position: relative; }
+  .num { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; color: #94A3B8; letter-spacing: .12em; }
+  .eyebrow { margin-top: 18px; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #0E9F94; font-weight: 700; }
+  h2 { margin: 5px 0 10px; font-size: 25px; letter-spacing: -.03em; }
+  .meta p { margin: 0; color: #64748B; font-size: 12.5px; line-height: 1.7; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .chip { font-size: 10px; color: #475569; background: #F1F5F9; border: 1px solid #E2E8F0; padding: 4px 8px; border-radius: 999px; }
+  .tag { position: absolute; left: 26px; bottom: 22px; font-size: 10px; font-weight: 700; color: #0E9F94; letter-spacing: .08em; }
+  .light { background: #fff; border: 1px solid #E2E8F0; padding: 22px 26px 18px; position: relative; overflow: hidden; }
+  .dark { background: #0B2545; padding: 22px 26px 18px; position: relative; overflow: hidden; }
+  .label { font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: #94A3B8; margin-bottom: 22px; }
+  .lockup { display: block; width: 100%; max-width: 340px; height: auto; margin: 16px auto 0; }
+  .dark .lockup { margin-top: 16px; }
+  .sizes { display: flex; align-items: end; gap: 13px; margin-top: 26px; padding-top: 14px; border-top: 1px solid #E2E8F0; color: #94A3B8; font-size: 9px; }
+  .icon-48 { width: 48px; height: 48px; }
+  .icon-32 { width: 32px; height: 32px; }
+  .icon-24 { width: 24px; height: 24px; }
+  footer { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 18px; border-top: 1px solid #CBD5E1; color: #64748B; font-size: 10.5px; }
+  .swatches { display: flex; align-items: center; gap: 8px; }
+  .sw { width: 13px; height: 13px; border-radius: 50%; display: inline-block; }
+  .sw-label { margin-right: 8px; }
+</style>
+</head>
+<body>
+  <header>
+    <div>
+      <div class="kicker">Identity exploration · 2026</div>
+      <h1>Pacelith 标识概念</h1>
+      <p class="sub">三款原创方向，统一字标与色彩；目前只做审查，不写入网站。</p>
+    </div>
+    <div class="review-badge">Review only · not in production</div>
+  </header>
+  
+      <article class="concept">
+        <div class="meta">
+          <div class="num">01</div>
+          <div class="eyebrow">Pace Path · 节奏路径</div>
+          <h2>Pace Path</h2>
+          <p>用一条上升的阶梯线表示训练进度与配速分段；右上角圆点是“当前节点”。</p>
+          <div class="chips"><span class="chip">进步感</span><span class="chip">数据感</span><span class="chip">易缩放</span></div>
+          <div class="tag">推荐方向</div>
+        </div>
+        <div class="light">
+          <div class="label">浅色背景</div>
+          <img class="lockup" src="concept-1-pace-path.svg" alt="Pace Path 浅色横向组合"/>
+          <div class="sizes">
+            <img class="icon-48" src="concept-1-icon.svg" alt="Pace Path 图标 48px"/>
+            <img class="icon-32" src="concept-1-icon.svg" alt="Pace Path 图标 32px"/>
+            <img class="icon-24" src="concept-1-icon.svg" alt="Pace Path 图标 24px"/>
+            <span>图标缩放检查</span>
+          </div>
+        </div>
+        <div class="dark">
+          <div class="label">深色背景</div>
+          <img class="lockup" src="concept-1-pace-path-dark.svg" alt="Pace Path 深色横向组合"/>
+        </div>
+      </article>
+      <article class="concept">
+        <div class="meta">
+          <div class="num">02</div>
+          <div class="eyebrow">Split Ring · 分段环</div>
+          <h2>Split Ring</h2>
+          <p>一个带缺口的环，缺口处是起点；表达圈速、分段和持续训练。</p>
+          <div class="chips"><span class="chip">节奏</span><span class="chip">圈速</span><span class="chip">动态</span></div>
+          <div class="tag">运动感更强</div>
+        </div>
+        <div class="light">
+          <div class="label">浅色背景</div>
+          <img class="lockup" src="concept-2-split-ring.svg" alt="Split Ring 浅色横向组合"/>
+          <div class="sizes">
+            <img class="icon-48" src="concept-2-icon.svg" alt="Split Ring 图标 48px"/>
+            <img class="icon-32" src="concept-2-icon.svg" alt="Split Ring 图标 32px"/>
+            <img class="icon-24" src="concept-2-icon.svg" alt="Split Ring 图标 24px"/>
+            <span>图标缩放检查</span>
+          </div>
+        </div>
+        <div class="dark">
+          <div class="label">深色背景</div>
+          <img class="lockup" src="concept-2-split-ring-dark.svg" alt="Split Ring 深色横向组合"/>
+        </div>
+      </article>
+      <article class="concept">
+        <div class="meta">
+          <div class="num">03</div>
+          <div class="eyebrow">Ribbon S · 缎带 S</div>
+          <h2>Ribbon S</h2>
+          <p>用一条连续折线构成 S 形缎带，结束时收在左下角；更像一个可记忆的字标。</p>
+          <div class="chips"><span class="chip">字母识别</span><span class="chip">流动</span><span class="chip">个性</span></div>
+          <div class="tag">品牌感更强</div>
+        </div>
+        <div class="light">
+          <div class="label">浅色背景</div>
+          <img class="lockup" src="concept-3-ribbon-s.svg" alt="Ribbon S 浅色横向组合"/>
+          <div class="sizes">
+            <img class="icon-48" src="concept-3-icon.svg" alt="Ribbon S 图标 48px"/>
+            <img class="icon-32" src="concept-3-icon.svg" alt="Ribbon S 图标 32px"/>
+            <img class="icon-24" src="concept-3-icon.svg" alt="Ribbon S 图标 24px"/>
+            <span>图标缩放检查</span>
+          </div>
+        </div>
+        <div class="dark">
+          <div class="label">深色背景</div>
+          <img class="lockup" src="concept-3-ribbon-s-dark.svg" alt="Ribbon S 深色横向组合"/>
+        </div>
+      </article>
+  <footer>
+    <div>字标：系统无衬线渲染；图标：基础几何原创绘制。最终定稿建议将文字转曲并做商标检索。</div>
+    <div class="swatches"><span class="sw-label">Palette</span><span class="sw" style="background:#0B2545"></span><span class="sw" style="background:#0E9F94"></span><span class="sw" style="background:#2DD4BF"></span><span class="sw" style="background:#94A3B8"></span></div>
+  </footer>
+</body>
+</html>

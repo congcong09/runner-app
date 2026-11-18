@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { BRAND } from "@/lib/brand";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,11 +15,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Stride Lab · 跑步计划实验室",
-    template: "%s · Stride Lab",
+    default: BRAND.title,
+    template: `%s · ${BRAND.name}`,
   },
   description:
     "丹尼尔斯 VDOT、汉森马拉松与挪威单阈值三种训练体系：输入最近比赛成绩与每周时间，生成配速、周计划与进阶节奏。",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0b2545",
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

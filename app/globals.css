@@ -2,6 +2,7 @@
 
 /*
  * 全站主题令牌：所有路线（首页、丹尼尔斯、汉森、挪威单阈值、登录）共享。
+ * 品牌主题色为 Pacelith Navy（#0B2545）；Teal / Mint 只作为强调与状态色。
  * 具体的训练体系只通过 --method-accent / --method-soft 做局部点缀。
  */
 :root {
@@ -41,6 +42,14 @@
   --long: oklch(0.55 0.1 200);
   --warn: oklch(0.72 0.13 75);
 
+  /* Pacelith 品牌色：Navy 是主题色，Teal / Mint 只做强调。 */
+  --brand-navy: #0b2545;
+  --brand-teal: #0e9f94;
+  --brand-mint: #2dd4bf;
+  --brand-mark-bg: var(--brand-navy);
+  --brand-mark-fg: #ffffff;
+  --brand-mark-dot: var(--brand-mint);
+
   --method-accent: var(--primary);
   --method-soft: var(--secondary);
   --hero-grid-color: oklch(0.55 0.03 255 / 0.06);
@@ -77,6 +86,11 @@
     --hero-grid-color: oklch(0.95 0.02 255 / 0.06);
     --inverse: oklch(0.2 0.035 259);
     --inverse-foreground: oklch(0.97 0.005 250);
+
+    /* 深色背景下用反白底图标，保持与 Logo 深色版一致。 */
+    --brand-mark-bg: #f8fafc;
+    --brand-mark-fg: var(--brand-navy);
+    --brand-mark-dot: var(--brand-teal);
   }
 }
 

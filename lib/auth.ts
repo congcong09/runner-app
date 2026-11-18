@@ -10,7 +10,7 @@ import { useSyncExternalStore } from "react"
  * 页面层不需要重写。
  */
 
-const STORAGE_KEY = "stride-lab-session-v1"
+const STORAGE_KEY = "pacelith-session-v1"
 const AUTH_EVENT = "stride-auth-change"
 
 export interface AuthSession {

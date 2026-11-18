@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="800" height="240" role="img" aria-label="Pacelith 跑步计划实验室">
+  <rect width="400" height="120" fill="none"/>
+  <g transform="translate(8 24) scale(0.75)">
+    <rect x="6" y="6" width="84" height="84" rx="24" fill="#F8FAFC"/>
+    <path d="M72 28H42C30 28 26 38 34 46L54 54C64 58 68 68 60 74C55 78 48 78 42 78H26" fill="none" stroke="#0B2545" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="72" cy="28" r="6.5" fill="#0E9F94"/>
+  </g>
+  <g font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+    <text x="96" y="58" font-size="34" font-weight="700" letter-spacing="2.2" textLength="104" lengthAdjust="spacingAndGlyphs" fill="#F8FAFC">PACE</text>
+    <text x="202" y="58" font-size="34" font-weight="500" letter-spacing="2.2" textLength="114" lengthAdjust="spacingAndGlyphs" fill="#2DD4BF">LITH</text>
+    <text x="98" y="84" font-size="12" font-weight="500" letter-spacing="4.1" textLength="218" lengthAdjust="spacingAndGlyphs" fill="#94A3B8">跑步计划实验室</text>
+  </g>
+</svg>

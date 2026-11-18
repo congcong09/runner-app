@@ -27,6 +27,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { signIn, signOut, useAuthSession } from "@/lib/auth"
+import { BRAND } from "@/lib/brand"
 import { DATA_PLATFORMS } from "@/lib/methods"
 import { cn } from "@/lib/utils"
 
@@ -93,7 +94,7 @@ export default function LoginPage() {
             <div className="relative flex flex-1 flex-col">
               <Badge className="w-fit border-white/15 bg-white/10 text-white">
                 <Sparkles className="size-3" />
-                Stride Lab · 数据接入前夜
+                {BRAND.name} · 数据接入前夜
               </Badge>
 
               <h1 className="mt-6 max-w-lg text-3xl leading-tight font-semibold tracking-tight xl:text-4xl">
@@ -358,7 +359,7 @@ export default function LoginPage() {
 
                   <Button type="submit" className="w-full" size="lg">
                     <LogIn className="size-4" />
-                    {mode === "signup" ? "创建本地账户" : "进入 Stride Lab"}
+                    {mode === "signup" ? "创建本地账户" : `进入 ${BRAND.name}`}
                   </Button>
 
                   <p className="text-muted-foreground text-center text-[10px] leading-relaxed">

@@ -4,7 +4,9 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { LogIn } from "lucide-react"
 
+import { BrandMark } from "@/components/brand-mark"
 import { Button } from "@/components/ui/button"
+import { BRAND } from "@/lib/brand"
 import { useAuthSession } from "@/lib/auth"
 import { METHODS } from "@/lib/methods"
 import { cn } from "@/lib/utils"
@@ -13,27 +15,6 @@ const NAV = [
   { href: "/", label: "首页" },
   ...METHODS.map((method) => ({ href: method.href, label: method.name })),
 ]
-
-function LogoMark() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className="size-5" aria-hidden="true">
-      <path
-        d="M4.5 17.5 10 6l3.1 6.3L19.5 6"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M4 20h16"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        opacity=".45"
-      />
-    </svg>
-  )
-}
 
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/"
@@ -49,18 +30,16 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-[1180px] items-center gap-3 px-4 lg:px-8">
         <Link
           href="/"
-          aria-label="Stride Lab 首页"
+          aria-label={`${BRAND.name} 首页`}
           className="flex min-w-0 items-center gap-2.5"
         >
-          <span className="bg-primary text-primary-foreground grid size-9 shrink-0 place-items-center rounded-[10px] shadow-sm">
-            <LogoMark />
-          </span>
+          <BrandMark className="size-9 drop-shadow-sm" />
           <span className="min-w-0 leading-tight">
             <span className="block text-[14px] font-semibold tracking-tight">
-              Stride Lab
+              {BRAND.name}
             </span>
             <span className="text-muted-foreground block text-[11px]">
-              跑步计划实验室
+              {BRAND.chinese}
             </span>
           </span>
         </Link>

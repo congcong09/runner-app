@@ -1,5 +1,7 @@
 import Link from "next/link"
 
+import { BrandMark } from "@/components/brand-mark"
+import { BRAND } from "@/lib/brand"
 import { METHODS } from "@/lib/methods"
 
 export function SiteFooter() {
@@ -9,28 +11,13 @@ export function SiteFooter() {
         <div className="grid gap-8 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2">
-              <span className="bg-primary text-primary-foreground grid size-8 place-items-center rounded-lg">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="size-4"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M4.5 17.5 10 6l3.1 6.3L19.5 6"
-                    stroke="currentColor"
-                    strokeWidth="2.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
+              <BrandMark className="size-8" />
               <div className="leading-tight">
                 <div className="text-sm font-semibold tracking-tight">
-                  Stride Lab
+                  {BRAND.name}
                 </div>
                 <div className="text-muted-foreground text-[11px]">
-                  跑步计划实验室
+                  {BRAND.chinese}
                 </div>
               </div>
             </div>
@@ -85,7 +72,7 @@ export function SiteFooter() {
         </div>
 
         <div className="text-muted-foreground mt-8 flex flex-col gap-2 border-t pt-5 text-[11px] sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 Stride Lab · 训练配速由公开公式估算</p>
+          <p>© 2026 {BRAND.name} · 训练配速由公开公式估算</p>
           <p>不构成医疗建议；出现疼痛或持续疲劳时请降低负荷。</p>
         </div>
       </div>

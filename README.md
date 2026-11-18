@@ -1,4 +1,4 @@
-# Stride Lab · 跑步计划实验室
+# Pacelith · 跑步计划实验室
 
 一个 Next.js 16 App Router 应用，把三种训练体系放在同一个视觉系统里：
 
@@ -32,7 +32,10 @@ pnpm build
 ```
 app/
   layout.tsx               根布局：metadata、字体、全站主题入口
-  globals.css              全站主题令牌 + 方法点缀色 + 工具类
+  globals.css              全站主题令牌 + 品牌色 + 方法点缀色 + 工具类
+  favicon.ico              浏览器 favicon（Pacelith，16/32/48/64）
+  icon.svg                 现代浏览器 SVG favicon
+  apple-icon.png           iOS 主屏图标（180px）
   page.tsx                 首页
   daniels/                 丹尼尔斯页（lib/ + components/ + calculator）
   hanson/                  汉森页（lib/ + components/ + calculator）
@@ -41,6 +44,7 @@ app/
 components/
   site-header.tsx          全站导航 + 本地账户状态
   site-footer.tsx          全站页脚
+  brand-mark.tsx           Pacelith 品牌图形（Pace Path）
   method-hero.tsx          三种方法共用的 hero
   stat-grid.tsx            共用统计卡
   ui/                      shadcn/ui 风格基础组件
