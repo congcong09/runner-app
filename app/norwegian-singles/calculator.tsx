@@ -3,7 +3,8 @@
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react"
 import { BarChart3, Heart, ListChecks } from "lucide-react"
 
-import { AppHeader, type TabValue } from "./components/app-header"
+import { SiteFooter } from "@/components/site-footer"
+import { SiteHeader } from "@/components/site-header"
 import { HeartRatePanel } from "./components/heart-rate-panel"
 import { Hero } from "./components/hero"
 import { InputPanel, type FormState } from "./components/input-panel"
@@ -12,7 +13,7 @@ import { MethodPanel } from "./components/method-panel"
 import { PacePanel } from "./components/pace-panel"
 import { SummaryStats } from "./components/summary-stats"
 import { WeekPlan } from "./components/week-plan"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
   buildPlan,
   formatPace,
@@ -20,6 +21,8 @@ import {
   planToText,
   type AthleteInput,
 } from "./lib/training"
+
+type TabValue = "week" | "paces" | "hr" | "load" | "method"
 
 const STORAGE_KEY = "ns-planner-form-v1"
 const TAB_VALUES: TabValue[] = ["week", "paces", "hr", "load", "method"]
@@ -221,7 +224,7 @@ export function NorwegianSinglesCalculator() {
 
   return (
     <>
-      <AppHeader onNavigate={(next) => changeTab(next, true)} />
+      <SiteHeader />
       <Hero plan={plan} />
 
       <main className="mx-auto max-w-[1180px] px-4 py-8 lg:px-8 lg:py-10">
@@ -296,42 +299,7 @@ export function NorwegianSinglesCalculator() {
         </div>
       </main>
 
-      <footer className="bg-card/40 border-t">
-        <div className="mx-auto max-w-[1180px] px-4 py-8 lg:px-8">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-muted-foreground text-xs">
-              依据《Norwegian Singles — An Approach To Running》实现 · 配速由 Riegel
-              换算外推 · 不构成医疗建议
-            </p>
-            <div className="text-muted-foreground flex gap-4 text-xs">
-              <a
-                className="hover:text-foreground transition-colors"
-                href="https://norwegiansingles.run"
-                target="_blank"
-                rel="noreferrer"
-              >
-                原指南
-              </a>
-              <a
-                className="hover:text-foreground transition-colors"
-                href="https://lactrace.com/norwegian-singles"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Lactrace 配速表
-              </a>
-              <a
-                className="hover:text-foreground transition-colors"
-                href="https://www.reddit.com/r/NorwegianSinglesRun/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Reddit
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   )
 }

@@ -1,5 +1,6 @@
 import { ArrowRight, Timer, TrendingUp, Waves } from "lucide-react"
 
+import { StatGrid } from "@/components/stat-grid"
 import { formatPace, type Plan } from "../lib/training"
 
 export function SummaryStats({ plan }: { plan: Plan }) {
@@ -46,26 +47,14 @@ export function SummaryStats({ plan }: { plan: Plan }) {
   ]
 
   return (
-    <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-      {items.map((item) => (
-        <div
-          key={item.label}
-          data-testid="stat"
-          className="bg-card rounded-xl border p-4 shadow-[0_1px_2px_rgba(16,24,40,0.04)]"
-        >
-          <div className="text-muted-foreground flex items-center gap-1.5 text-[11px]">
-            <item.icon className="size-3.5" />
-            {item.label}
-          </div>
-          <div className="mt-2 flex items-baseline gap-1">
-            <span className="text-2xl leading-none font-semibold tracking-tight tabular">
-              {item.value}
-            </span>
-            <span className="text-muted-foreground text-xs">{item.unit}</span>
-          </div>
-          <div className="text-muted-foreground mt-1.5 text-[11px]">{item.hint}</div>
-        </div>
-      ))}
-    </div>
+    <StatGrid
+      items={items.map((item) => ({
+        icon: <item.icon className="size-3.5" />,
+        label: item.label,
+        value: item.value,
+        unit: item.unit,
+        hint: item.hint,
+      }))}
+    />
   )
 }

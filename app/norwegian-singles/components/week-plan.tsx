@@ -1,7 +1,7 @@
 import { AlertTriangle, Check, Copy, Download } from "lucide-react"
 
-import { Badge } from "./ui/badge"
-import { Button } from "./ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Card,
   CardAction,
@@ -9,7 +9,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "./ui/card"
+} from "@/components/ui/card"
 import {
   formatMinutes,
   formatPace,
@@ -19,7 +19,7 @@ import {
   type Plan,
   type QualitySession,
 } from "../lib/training"
-import { cn } from "../lib/utils"
+import { cn } from "@/lib/utils"
 
 const kindStyle: Record<
   DayKind,

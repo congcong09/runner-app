@@ -1,11 +1,11 @@
-import { Badge } from "./ui/badge"
+import { Badge } from "@/components/ui/badge"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "./ui/card"
+} from "@/components/ui/card"
 import {
   Table,
   TableBody,
@@ -13,7 +13,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./ui/table"
+} from "@/components/ui/table"
 import {
   DISTANCE_LABELS,
   EQUIVALENT_DISTANCES,

@@ -1,13 +1,13 @@
 import { Gauge, TrendingUp } from "lucide-react"
 
-import { Badge } from "./ui/badge"
+import { Badge } from "@/components/ui/badge"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "./ui/card"
+} from "@/components/ui/card"
 import {
   Table,
   TableBody,
@@ -15,7 +15,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./ui/table"
+} from "@/components/ui/table"
 import { formatPace, type Plan } from "../lib/training"
 
 const PHASE_LABEL = {

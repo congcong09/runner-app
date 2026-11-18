@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stride Lab · 跑步计划实验室
 
-## Getting Started
+一个 Next.js 16 App Router 应用，把三种训练体系放在同一个视觉系统里：
 
-First, run the development server:
+- `/` 方法库首页：比较体系、进入计算器、数据接入入口
+- `/daniels` 丹尼尔斯 VDOT：E / M / T / I / R 五类配速、8–16 周计划
+- `/hanson` 汉森马拉松：16 周全马 / 12 周半马、6 天/周、3 次 SOS、长距离封顶
+- `/norwegian-singles` 挪威单阈值：阈下配速、周课表、心率护栏、TSS/CTL
+- `/login` 本地演示登录：不接后端，只验证账户态与数据接入入口
+
+所有计算都在浏览器本地完成，输入保存在 `localStorage`。
+
+## 开发
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+打开 [http://localhost:3000](http://localhost:3000)。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 校验
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm lint
+pnpm exec tsc --noEmit
+pnpm build
+```
 
-## Learn More
+## 结构
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+  layout.tsx               根布局：metadata、字体、全站主题入口
+  globals.css              全站主题令牌 + 方法点缀色 + 工具类
+  page.tsx                 首页
+  daniels/                 丹尼尔斯页（lib/ + components/ + calculator）
+  hanson/                  汉森页（lib/ + components/ + calculator）
+  norwegian-singles/       挪威单阈值页
+  login/                   本地演示登录页
+components/
+  site-header.tsx          全站导航 + 本地账户状态
+  site-footer.tsx          全站页脚
+  method-hero.tsx          三种方法共用的 hero
+  stat-grid.tsx            共用统计卡
+  ui/                      shadcn/ui 风格基础组件
+lib/
+  methods.ts               方法元数据、数据平台占位
+  race.ts                  比赛距离、Riegel 换算
+  format.ts                配速/时长格式化
+  auth.ts                  本地演示账户（localStorage）
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+主题统一提升到 `app/globals.css` 的 `:root`；各训练体系只通过 `data-method` 设置
+`--method-accent` / `--method-soft` 做局部点缀，不再维护各自的主题作用域。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 说明
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+配速由公开公式估算，不构成医疗建议。接入 Strava / Garmin / COROS 等平台仍在规划中，
+当前登录页不会发起任何网络请求。

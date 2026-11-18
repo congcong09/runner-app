@@ -12,15 +12,42 @@
  *  - 2.2 跑量：一旦适应，阈下工作约占每周训练时间的 20–25%。
  */
 
+import {
+  DISTANCE_LABELS,
+  EQUIVALENT_DISTANCES,
+  RACE_DISTANCES,
+  RIEGEL_EXPONENT,
+  equivalentPace,
+  paceForEffort,
+  riegelTime,
+  type RaceInput,
+} from "@/lib/race"
+import {
+  formatDuration,
+  formatMinutes,
+  formatPace,
+  formatPacePer,
+  parseRaceTime,
+} from "@/lib/format"
+
+export {
+  DISTANCE_LABELS,
+  EQUIVALENT_DISTANCES,
+  RACE_DISTANCES,
+  RIEGEL_EXPONENT,
+  equivalentPace,
+  formatDuration,
+  formatMinutes,
+  formatPace,
+  formatPacePer,
+  paceForEffort,
+  parseRaceTime,
+  riegelTime,
+}
+export type { RaceInput }
+
 export type SessionId = "long" | "medium" | "short"
 export type DayKind = "rest" | "easy" | "quality" | "long"
-
-export interface RaceInput {
-  /** 距离，单位米 */
-  distance: number
-  /** 成绩，单位秒 */
-  seconds: number
-}
 
 export interface AthleteInput {
   race: RaceInput
@@ -122,56 +149,8 @@ export interface Plan {
   warnings: string[]
 }
 
-/** Riegel 耐力换算指数，用于把一次比赛成绩外推到其他距离 */
-export const RIEGEL_EXPONENT = 1.06
-
-export const RACE_DISTANCES = [
-  { value: 1500, label: "1500 米" },
-  { value: 3000, label: "3000 米" },
-  { value: 5000, label: "5 公里" },
-  { value: 10000, label: "10 公里" },
-  { value: 21097.5, label: "半程马拉松" },
-  { value: 42195, label: "马拉松" },
-] as const
-
-export const EQUIVALENT_DISTANCES = [
-  5000, 10000, 15000, 20000, 21097.5, 25000, 30000, 42195,
-] as const
-
-export const DISTANCE_LABELS: Record<number, string> = {
-  1500: "1500 米",
-  3000: "3000 米",
-  5000: "5 公里",
-  10000: "10 公里",
-  15000: "15 公里",
-  20000: "20 公里",
-  21097.5: "半马",
-  25000: "25 公里",
-  30000: "30 公里",
-  42195: "马拉松",
-}
-
 const clamp = (value: number, min: number, max: number) =>
   Math.min(max, Math.max(min, value))
-
-/** 用一次比赛成绩换算到另一个距离所需时间（秒） */
-export function riegelTime(race: RaceInput, distance: number): number {
-  if (!race.seconds || !race.distance) return 0
-  return race.seconds * Math.pow(distance / race.distance, RIEGEL_EXPONENT)
-}
-
-export function equivalentPace(race: RaceInput, distance: number): number {
-  const seconds = riegelTime(race, distance)
-  return seconds / (distance / 1000)
-}
-
-/** 一次全力跑约 `seconds` 秒时的配速（秒/公里），用来近似 LT2（约 1 小时比赛配速） */
-export function paceForEffort(race: RaceInput, seconds: number): number {
-  if (!race.seconds || !race.distance) return 0
-  const distance =
-    race.distance * Math.pow(seconds / race.seconds, 1 / RIEGEL_EXPONENT)
-  return seconds / (distance / 1000)
-}
 
 /** 每周课程模板：按训练天数与质量课次数决定课次分布 */
 export function buildDayTemplate(daysPerWeek: number, sessions: number): DayKind[] {
@@ -531,56 +510,4 @@ export function planToText(plan: Plan, formatPace: (s: number) => string): strin
     `轻松跑心率上限 ${plan.hr.easyCap} 次/分；质量课心率可从 ${plan.hr.qualityLow} 逐步接近 ${plan.hr.qualityHigh}。`,
   )
   return lines.join("\n")
-}
-
-// —— 时间格式化 ——
-export function formatPace(secondsPerKm: number): string {
-  if (!Number.isFinite(secondsPerKm) || secondsPerKm <= 0) return "—"
-  const total = Math.round(secondsPerKm)
-  const min = Math.floor(total / 60)
-  const sec = total % 60
-  return `${min}:${String(sec).padStart(2, "0")}`
-}
-
-export function formatPacePer(secondsPerKm: number, meters: number): string {
-  return formatPace((secondsPerKm * meters) / 1000)
-}
-
-export function formatDuration(totalSeconds: number): string {
-  const seconds = Math.round(totalSeconds)
-  const h = Math.floor(seconds / 3600)
-  const m = Math.floor((seconds % 3600) / 60)
-  const s = seconds % 60
-  if (h > 0) {
-    return `${h}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`
-  }
-  return `${m}:${String(s).padStart(2, "0")}`
-}
-
-export function formatMinutes(minutes: number): string {
-  const total = Math.round(minutes)
-  if (total < 60) return `${total} 分钟`
-  const h = Math.floor(total / 60)
-  const m = total % 60
-  return m === 0 ? `${h} 小时` : `${h} 小时 ${m} 分`
-}
-
-export function parseRaceTime(value: string): number | null {
-  const trimmed = value.trim()
-  if (!trimmed) return null
-  const parts = trimmed.split(":").map((part) => part.trim())
-  if (parts.some((part) => part === "" || Number.isNaN(Number(part)))) return null
-  const nums = parts.map(Number)
-  if (nums.some((n) => n < 0)) return null
-  if (nums.length === 1) return nums[0]
-  // 分:秒 形式里秒必须小于 60；时:分:秒 形式里分、秒都必须小于 60
-  if (nums.length === 2) {
-    if (nums[1] >= 60) return null
-    return nums[0] * 60 + nums[1]
-  }
-  if (nums.length === 3) {
-    if (nums[1] >= 60 || nums[2] >= 60) return null
-    return nums[0] * 3600 + nums[1] * 60 + nums[2]
-  }
-  return null
 }

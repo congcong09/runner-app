@@ -1,7 +1,7 @@
 import { Calculator, RotateCcw } from "lucide-react"
 
-import { Badge } from "./ui/badge"
-import { Button } from "./ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Card,
   CardAction,
@@ -9,18 +9,18 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "./ui/card"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select"
-import { Separator } from "./ui/separator"
-import { Slider } from "./ui/slider"
+} from "@/components/ui/select"
+import { Separator } from "@/components/ui/separator"
+import { Slider } from "@/components/ui/slider"
 import {
   DISTANCE_LABELS,
   RACE_DISTANCES,
@@ -28,7 +28,7 @@ import {
   riegelTime,
   type Plan,
 } from "../lib/training"
-import { cn } from "../lib/utils"
+import { cn } from "@/lib/utils"
 
 export interface FormState {
   raceDistance: number

@@ -6,8 +6,8 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "./ui/card"
-import { Separator } from "./ui/separator"
+} from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 
 const principles = [
   {

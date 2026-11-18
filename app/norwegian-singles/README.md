@@ -9,41 +9,39 @@
 
 ```
 app/norwegian-singles/
-  layout.tsx        路由级 metadata + <div className="ns-app"> 主题作用域
+  layout.tsx        路由级 metadata + data-method="norwegian-singles"
   page.tsx          服务端页面，渲染客户端计算器
   calculator.tsx    "use client" 根组件：表单状态、localStorage、URL 同步、导出
-  styles.css        主题令牌（.ns-app 作用域）+ tabular / hero-grid 工具类
   components/       业务组件（hero、input-panel、week-plan、pace-panel…）
-  components/ui/    shadcn/ui 组件（button、card、select、tabs、table、slider…）
   lib/training.ts   全部计算逻辑（纯函数，无 React 依赖）
+```
+
+通用 UI、主题和格式化工具已经提升到：
+
+```
+components/ui/      shadcn/ui 组件
+components/         全站页头/页脚/方法 hero/统计卡
+app/globals.css     全站主题令牌
+lib/race.ts         Riegel 换算
+lib/format.ts       配速/时长格式化
 ```
 
 ## 几个约定
 
-- **样式入口**：`styles.css` 里的 `@theme inline` / `@utility` 必须由 Tailwind 入口编译，
-  因此它在 `app/globals.css` 顶部以 `@import "./norwegian-singles/styles.css"` 引入，
-  路由 layout 不再单独 import。所有变量都挂在 `.ns-app` 下，不会影响站点其他页面。
+- **主题**：颜色 token 在 `app/globals.css` 的 `:root`；本页只通过
+  `data-method="norwegian-singles"` 获得局部的 `--method-accent` / `--method-soft`。
 - **客户端边界**：`page.tsx` 是服务端组件，只负责渲染 `calculator.tsx`；后者带 `"use client"`，
   其余组件由它引入，因此不需要重复声明。
-- **水合安全**：表单初始值固定为 `DEFAULT_FORM`，`localStorage` 与 `?tab=` 都在 `useEffect` 里读取，
-  避免服务端渲染与客户端首帧不一致。
+- **水合安全**：`localStorage` 通过 `useSyncExternalStore` 读取；服务端/首帧用默认值，
+  水合后自动切换，不会产生 mismatch。
 - **校验**：成绩需能解析成时间，且换算配速在 2:00–10:00/km 之间，否则判定为无效输入并保留上一次有效计划。
 - **URL**：标签页写入 `?tab=week|paces|hr|load|method`，可直接分享。
 - **本地数据**：表单存在 `localStorage` 的 `ns-planner-form-v1`，不上传任何数据。
 
-## 添加更多 shadcn 组件
-
-```bash
-npx shadcn@latest add dialog
-```
-
-把输出目录指向 `app/norwegian-singles/components/ui`（或在生成后移动到该目录），
-并保持 `components.json` 里的别名与 `tsconfig.json` 的 `@/*` 一致。
-
 ## 自检
 
-计算逻辑可直接在 Node 中跑（Node ≥ 22 支持 TS 直执行）：
-
 ```bash
-node --experimental-strip-types app/norwegian-singles/lib/training.ts   # 仅做导入检查
+pnpm lint
+pnpm exec tsc --noEmit
+pnpm build
 ```
