@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Norwegian Singles 计算器的主题令牌与工具类（作用域限定在 .ns-app） */
+@import "./norwegian-singles/styles.css";
 
 :root {
   --background: #ffffff;
